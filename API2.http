@@ -1,0 +1,46 @@
+@API2_HostAddress = http://localhost:5000
+@token = {{login.response.body.token}}
+
+### 1. Hacer login para obtener el token
+# @name login
+POST {{API2_HostAddress}}/Login/Login
+Content-Type: application/x-www-form-urlencoded
+
+Email=tu_email@ejemplo.com&Password=tu_password
+
+### 2. Verificar que el token funciona - obtener datos del estudiante
+GET {{API2_HostAddress}}/Login/ObtenerEstudiante
+Authorization: Bearer {{token}}
+
+### 3. Verificar el estado del token antes del logout
+GET {{API2_HostAddress}}/Login/VerificarToken
+Authorization: Bearer {{token}}
+
+### 4. Probar logout (el servidor confirma que el cliente debe eliminar el token)
+POST {{API2_HostAddress}}/Login/Logout
+Authorization: Bearer {{token}}
+
+### 5. Verificar el estado del token después del logout (debería fallar si el cliente borró el token)
+GET {{API2_HostAddress}}/Login/VerificarToken
+Authorization: Bearer {{token}}
+
+### 6. Probar con un token inválido (debería fallar)
+GET {{API2_HostAddress}}/Login/ObtenerEstudiante
+Authorization: Bearer token_invalido
+
+### 7. Probar sin token (debería fallar)
+GET {{API2_HostAddress}}/Login/ObtenerEstudiante
+
+### 8. Verificar el estado de la API
+GET {{API2_HostAddress}}/health
+
+### 9. Probar registro de nuevo estudiante
+POST {{API2_HostAddress}}/Login/Registro
+Content-Type: application/json
+
+{
+  "Nombre": "Test",
+  "Apellido": "Usuario",
+  "Email": "test@ejemplo.com",
+  "Clave": "Password123"
+}
