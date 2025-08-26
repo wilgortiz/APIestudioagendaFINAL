@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authorization;
 namespace API2.Controllers
 {
     [Route("[controller]")]
-    // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class ProfesoresController : ControllerBase
     {
@@ -34,9 +33,6 @@ namespace API2.Controllers
             if (profesor == null) return NotFound();
             return Ok(profesor);
         }
-
-
-
 
 
 
@@ -76,10 +72,6 @@ namespace API2.Controllers
                 return BadRequest(e.Message);
             }
         }
-
-
-
-
 
 
 

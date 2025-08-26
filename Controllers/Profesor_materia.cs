@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authorization;
 namespace API2.Controllers
 {
     [Route("[controller]")]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class ProfesorMateriaController : ControllerBase
     {
@@ -57,32 +56,6 @@ namespace API2.Controllers
 
 
 
-        /*
-        //´probando
-                //obtener todos los datos de la tabla intermedia Profesor_materia
-                // GET: ProfesorMateria/ObtenerMateriasConProfesores
-                [HttpGet("ObtenerMateriasConProfesores")]
-                public IActionResult ObtenerMateriasConProfesores()
-                {
-                    try
-                    {
-                        var materiasConProfesores = contexto.Profesor_materia
-                            .Include(pm => pm.Materia)
-                            .Include(pm => pm.Profesor)
-                            .ToList();
-
-                        Console.WriteLine("Se obtuvieron las materias con profesores");
-                        return Ok(materiasConProfesores);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Error: " + ex.Message);
-                        Console.WriteLine("StackTrace: " + ex.StackTrace);
-                        return StatusCode(500, "Error interno del servidor");
-                    }
-                }
-        */
-
         [HttpGet("ObtenerMateriasConProfesores")]
         public IActionResult ObtenerMateriasConProfesores()
         {
@@ -113,36 +86,6 @@ namespace API2.Controllers
 
 
 
-/*
-        //lista de profesores con sus respectivas materias
-        // GET: ProfesorMateria/ObtenerProfesoresConMaterias
-        [HttpGet("ObtenerProfesoresConMaterias")]
-        public IActionResult ObtenerProfesoresConMaterias()
-        {
-            var profesoresConMaterias = contexto.Profesor_materia
-                .Include(pm => pm.Profesor)
-                .Include(pm => pm.Materia)
-                .GroupBy(pm => pm.Id_Profesor)
-                .Select(g => new ProfesoresDTO
-                {
-                    Id = g.Key,
-                    Nombre = g.First().Profesor.Nombre,
-                    Apellido = g.First().Profesor.Apellido,
-                    Email = g.First().Profesor.Email,
-                    Celular = g.First().Profesor.Celular,
-                    Materias = g.Select(pm => new MateriaDto
-                    {
-                        Nombre = pm.Materia.Nombre,
-                        Periodo = pm.Materia.Periodo
-                    }).ToList()
-                })
-                .ToList();
-
-            return Ok(profesoresConMaterias);
-        }
-        */
-
-        //obtener los datos de una materia especiofica con sus profesores
         // GET: ProfesorMateria/ObtenerMateriaConProfesores/{idMateria}
         [HttpGet("ObtenerMateriaConProfesores/{idMateria}")]
         public IActionResult ObtenerMateriaConProfesores(int idMateria)

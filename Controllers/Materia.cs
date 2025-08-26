@@ -21,38 +21,6 @@ namespace API2.Controllers
 
 
 
-        // [Authorize]
-        // [HttpGet("obtenerMaterias")]
-        // public async Task<IActionResult> ObtenerTodas()
-        // {
-        //     try
-        //     {
-        //         if (!HttpContext.Items.TryGetValue("usuarioId", out var usuarioIdObj))
-        //         {
-        //             Console.WriteLine("Usuario no identificado");
-        //             return Unauthorized("Usuario no identificado");
-        //         }
-
-        //         int usuarioId = (int)usuarioIdObj;
-        //         Console.WriteLine($"Obteniendo actividades para el usuario {usuarioId}");
-
-        //         var materias = await contexto.Materia
-        //      .Where(a => a.IdEstudiante == usuarioId)
-        //      .ToListAsync();
-
-        //         foreach (var materia in materias)
-        //         {
-        //             Console.WriteLine($"Materia para el usuario {usuarioId}: ID={materia.idMateria}, Nombre={materia.Nombre}, Periodo={materia.Periodo}");
-        //         }
-        //         return Ok(materias);
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         Console.WriteLine($"Error al obtener actividades: {e.Message}");
-        //         return BadRequest(e.Message);
-        //     }
-        // }
-
 
         [Authorize]
         [HttpGet("obtenerMaterias")]
@@ -122,94 +90,6 @@ namespace API2.Controllers
 
 
 
-
-        // [HttpPost("Agregar")]
-        // public async Task<IActionResult> AgregarMaterias([FromBody] MateriaDto nuevaMateriaDto)
-        // {
-        //     if (nuevaMateriaDto == null)
-        //     {
-        //         return BadRequest("Los datos de la materia son inválidos.");
-        //     }
-
-        //     try
-        //     {
-        //         if (!HttpContext.Items.TryGetValue("usuarioId", out var usuarioIdObj))
-        //         {
-        //             return Unauthorized("Usuario no identificado");
-        //         }
-
-        //         int usuarioId = (int)usuarioIdObj;
-
-        //         var nuevaMateria = new Materia
-        //         {
-        //             Nombre = nuevaMateriaDto.Nombre,
-        //             Periodo = nuevaMateriaDto.Periodo,
-        //             IdEstudiante = usuarioId
-        //         };
-
-        //         contexto.Materia.Add(nuevaMateria);
-        //         await contexto.SaveChangesAsync();
-        //         return CreatedAtAction(nameof(ObtenerPorId), new { id = nuevaMateria.idMateria }, nuevaMateria);
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         return BadRequest(e.Message);
-        //     }
-        // }
-
-
-        // //Actualizar una materia
-        // [Authorize]
-        // [HttpPut("actualizarMateria")]
-        // public async Task<IActionResult> ActualizarMateria([FromBody] MateriaDto materiaDto)
-        // {
-        //     try
-        //     {
-        //         // 1. Verificar que el usuario está autenticado
-        //         if (!HttpContext.Items.TryGetValue("usuarioId", out var usuarioIdObj))
-        //         {
-        //             return Unauthorized("Usuario no identificado");
-        //         }
-        //         int usuarioId = (int)usuarioIdObj;
-
-        //         // 2. Verificar que el profesor existe y pertenece al usuario
-        //         var materiaExistente = await contexto.Materia
-        //             .FirstOrDefaultAsync(p => p.idMateria == materiaDto.idMateria && p.IdEstudiante == usuarioId);
-
-        //         if (materiaExistente == null)
-        //         {
-        //             return NotFound("Profesor no encontrado o no tienes permiso para editarlo");
-        //         }
-
-        //         // 3. Actualizar todos los campos (asumiendo que el DTO trae todos los datos actualizados)
-        //         materiaExistente.Nombre = materiaDto.Nombre ?? materiaExistente.Nombre;
-        //         materiaExistente.Periodo = materiaDto.Periodo;
-
-
-        //         // 4. Guardar cambios con manejo de concurrencia
-        //         try
-        //         {
-        //             await contexto.SaveChangesAsync();
-        //             return Ok(materiaExistente);
-        //         }
-        //         catch (DbUpdateConcurrencyException ex)
-        //         {
-        //             var entry = ex.Entries.Single();
-        //             var databaseValues = await entry.GetDatabaseValuesAsync();
-
-        //             if (databaseValues == null)
-        //             {
-        //                 return NotFound("la materia ya no existe en la base de datos");
-        //             }
-
-        //             return Conflict("la materia fue modificado por otro usuario. Recarga los datos e intenta nuevamente.");
-        //         }
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         return StatusCode(500, $"Error interno: {e.Message}");
-        //     }
-        // }
 
         [Authorize]
         [HttpPost("Agregar")]
@@ -357,7 +237,7 @@ namespace API2.Controllers
 
 
 
-        // Nuevo endpoint para obtener materia con sus profesores
+        // obtener materia con sus profesores
         [Authorize]
         [HttpGet("ObtenerConProfesores/{id}")]
         public async Task<IActionResult> ObtenerMateriaConProfesores(int id)

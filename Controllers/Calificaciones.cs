@@ -48,7 +48,6 @@ namespace API2.Controllers
                         },
                         TipoEvaluacion = c.TipoEvaluacion,
                         Calificacion = c.Calificacion,
-                        //Fecha = c.Fecha.HasValue ? c.Fecha.Value.ToString("yyyy-MM-ddTHH:mm:ss") : null
                     })
                     .ToListAsync();
 
@@ -116,11 +115,6 @@ namespace API2.Controllers
                 return BadRequest(e.Message);
             }
         }
-
-
-
-
-
 
 
 

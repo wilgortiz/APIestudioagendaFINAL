@@ -146,10 +146,6 @@ namespace API2.Controllers
 
 
 
-
-
-
-
         // GET: Faltas/ObtenerPorEstudiante/{idEstudiante}
         [HttpGet("ObtenerPorEstudiante/{idEstudiante}")]
         public async Task<IActionResult> ObtenerPorEstudiante(int idEstudiante)

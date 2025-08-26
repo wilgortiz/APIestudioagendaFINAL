@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authorization;
 namespace API2.Controllers
 {
     [Route("[controller]")]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class HorariosController : ControllerBase
     {
@@ -41,7 +40,7 @@ namespace API2.Controllers
                 var horarios = await _contexto.Horarios
                     .Include(h => h.Estudiante)
                     .Include(h => h.Materia)
-                    .Where(h => h.idEstudiante == usuarioId)  // Corregido para usar idEstudiante en lugar de navegar a Estudiante
+                    .Where(h => h.idEstudiante == usuarioId)  // uso idEstudiante en lugar de navegar a Estudiante
                     .ToListAsync();
 
                 // Log detallado de los horarios encontrados
@@ -65,8 +64,6 @@ namespace API2.Controllers
         }
 
         // GET: Horarios/{id}
-
-
         [HttpGet("Obtener/{id}")]
         public async Task<IActionResult> ObtenerPorId(int id)
         {
@@ -176,8 +173,6 @@ namespace API2.Controllers
                 return StatusCode(500, $"Error interno: {e.Message}");
             }
         }
-
-
 
 
 

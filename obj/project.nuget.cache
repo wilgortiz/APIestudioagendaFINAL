@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bWXhzRZ3d7D5FK9PZyJ9c37zRZRDtEzy08RiOg8EOt/l+70ZIz+FpnZOQiUw3icD4vi5/Z3MbU0GF9up/2CWxA==",
+  "dgSpecHash": "8ZX71tusXp/8T1OHGwLrbGbc7FmQZtZTSefjcQ7XRr7RMk3FhYaWEUZGl4aOuSAHRAR8QWgzrz37uyhgQps8Mw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\killerwil\\Desktop\\APIPARAESTUDIAR\\API2.csproj",
+  "projectFilePath": "C:\\Users\\killerwil\\Desktop\\APIestudioagendaFINAL\\API2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\killerwil\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.10\\microsoft.aspnetcore.authentication.jwtbearer.8.0.10.nupkg.sha512",
     "C:\\Users\\killerwil\\.nuget\\packages\\microsoft.bcl.timeprovider\\8.0.1\\microsoft.bcl.timeprovider.8.0.1.nupkg.sha512",

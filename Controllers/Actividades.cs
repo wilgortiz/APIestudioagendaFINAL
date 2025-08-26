@@ -5,41 +5,28 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace API2.Controllers
 {
-    [Route("[controller]")] // Define la ruta base para este controlador
-    [ApiController] // Indica que este controlador es un API Controller
-                    //habilita varias funciones como utiles automaticamente
-                    //como [frombody] y [authorize]
+    [Route("[controller]")] 
+    [ApiController] 
     public class ActividadesController : ControllerBase
     {
-        // Contexto de la base de datos
-        //en este caso, se inyecta el contexto de la base de datos
+        
         private readonly DataContext contexto;
 
-        // <-- Aquí ocurre la inyección de dependencias
+    
         public ActividadesController(DataContext context)
         {
-            contexto = context; // Se asigna la instancia inyectada al campo privado
+            contexto = context; 
         }
 
 
 
-        [Authorize] // Requiere autenticación, que el usuario esté logueado
-        /* [Authorize] solo bloquea a los no autenticados.
-        Si necesitas el ID del usuario autenticado dentro del método, debes buscarlo tú mismo en el contexto.
-        Esto es necesario si quieres asociar datos al usuario, validar permisos, etc.
-        Si solo te interesa que esté autenticado, con [Authorize] alcanza. Si necesitas saber quién es, tienes que buscar el dato 
-        asi como lo hacemos en este metodo
-        ejemplo:
-        [Authorize] = ¿tienes carnet válido?
-        Buscar usuarioId = ¿cuál es tu número de socio para darte tus cosas?*/
-        [HttpGet("obtenerActividades")] // Ruta personalizada, Actividades/obtenerActividades
+        [Authorize] 
+        [HttpGet("obtenerActividades")] 
         public async Task<IActionResult> ObtenerTodos()
         {
             try
             {
-                // Verifica que el usuario esté autenticado
-                // Aquí se asume que el usuario está autenticado y su ID se guarda en HttpContext.Items
-                //va al program.cs , al middlewware de autenticación y verifica que el usuario esté logueado
+               
 
                 if (!HttpContext.Items.TryGetValue("usuarioId", out var usuarioIdObj))
                 {
@@ -54,7 +41,7 @@ namespace API2.Controllers
              .Where(a => a.Id_Estudiante == usuarioId)
              .ToListAsync();
 
-                // Log each activity before returning
+               
                 foreach (var act in actividades)
                 {
                     Console.WriteLine($"Activity for user {usuarioId}: ID={act.idEvento}, tipo{act.Tipo_Evento}, Date={act.Fecha_Evento}, Desc={act.Descripcion ?? "null"}");
@@ -106,8 +93,7 @@ namespace API2.Controllers
                     // Si no tiene hora, asignar una por defecto (puedes quitarlo luego)
                     nuevaActividad.Fecha_Evento = nuevaActividad.Fecha_Evento.Date.AddHours(9); // 9 AM por defecto
                 }
-                // if (nuevaActividad.Fecha_Evento == default)
-                //     return BadRequest("Debe proporcionar una fecha válida para la actividad.");
+                
 
                 // Asignar ID del estudiante logueado
                 nuevaActividad.Id_Estudiante = (int)usuarioId;

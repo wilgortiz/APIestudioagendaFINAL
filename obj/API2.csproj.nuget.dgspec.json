@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\killerwil\\Desktop\\APIPARAESTUDIAR\\API2.csproj": {}
+    "C:\\Users\\killerwil\\Desktop\\APIestudioagendaFINAL\\API2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\killerwil\\Desktop\\APIPARAESTUDIAR\\API2.csproj": {
+    "C:\\Users\\killerwil\\Desktop\\APIestudioagendaFINAL\\API2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\killerwil\\Desktop\\APIPARAESTUDIAR\\API2.csproj",
+        "projectUniqueName": "C:\\Users\\killerwil\\Desktop\\APIestudioagendaFINAL\\API2.csproj",
         "projectName": "API2",
-        "projectPath": "C:\\Users\\killerwil\\Desktop\\APIPARAESTUDIAR\\API2.csproj",
+        "projectPath": "C:\\Users\\killerwil\\Desktop\\APIestudioagendaFINAL\\API2.csproj",
         "packagesPath": "C:\\Users\\killerwil\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\killerwil\\Desktop\\APIPARAESTUDIAR\\obj\\",
+        "outputPath": "C:\\Users\\killerwil\\Desktop\\APIestudioagendaFINAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\killerwil\\AppData\\Roaming\\NuGet\\NuGet.Config"
