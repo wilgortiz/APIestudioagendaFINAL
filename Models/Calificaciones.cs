@@ -25,6 +25,6 @@ namespace API2.Models
 
         public float? Calificacion { get; set; } // Calificación, no puede ser nula
 
-        public DateTime? Fecha { get; set; } // Fecha de la calificación, no puede ser nula
+        public DateTime? Fecha { get; set; } 
     }
 }

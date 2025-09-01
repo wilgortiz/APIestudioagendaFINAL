@@ -12,6 +12,7 @@ var configuration = builder.Configuration;
 builder.WebHost.UseUrls("http://localhost:5000", "https://localhost:5001", "http://*:5000", "https://*:5001");
 
 builder.Services.AddControllers();
+builder.Services.AddHttpContextAccessor();
 
 
 string secretKey = configuration["TokenAuthentication:SecretKey"] ?? throw new ArgumentNullException(nameof(secretKey));
@@ -110,6 +111,8 @@ builder.Services.AddDbContext<DataContext>(options =>
         configuration["ConnectionStrings:MySql"], // Se obtiene la cadena de conexión de la configuración
         ServerVersion.AutoDetect(configuration["ConnectionStrings:MySql"])) // Se detecta la versión de MySql
 );
+
+
 
 var app = builder.Build();
 

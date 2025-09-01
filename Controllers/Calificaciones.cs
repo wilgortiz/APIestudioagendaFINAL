@@ -48,6 +48,7 @@ namespace API2.Controllers
                         },
                         TipoEvaluacion = c.TipoEvaluacion,
                         Calificacion = c.Calificacion,
+                        Fecha = c.Fecha,
                     })
                     .ToListAsync();
 
@@ -78,7 +79,15 @@ namespace API2.Controllers
                             IdMateria = g.Key.idMateria,
                             Nombre = g.Key.Nombre
                         },
-                        Notas = g.Select(c => c.Calificacion).ToList(),
+                        //Notas = g.Select(c => c.Calificacion).ToList(),
+                        Notas = g.Select(c => new // Agregar la fecha en la selección de notas
+                        {
+                            Calificacion = c.Calificacion,
+                            Fecha = c.Fecha.HasValue
+                       ? c.Fecha.Value.ToString("dd/MM/yyyy HH:mm")
+                       : null
+                        }).ToList(),
+
                         Promedio = g.Average(c => c.Calificacion)
                     })
                     .ToListAsync();
@@ -130,6 +139,8 @@ namespace API2.Controllers
                 var usuarioId = HttpContext.Items["usuarioId"]; // Obtiene el ID del usuario desde el token
                 nuevaNota.idEstudiante = (int)usuarioId;
                 Console.WriteLine("el id del estudiante" + usuarioId);
+
+                nuevaNota.Fecha = DateTime.Now; // Asignamos la fecha actual
 
                 Console.WriteLine($"Id_Materia: {nuevaNota.idMateria}");
                 // Verifica si la materia existe
@@ -183,8 +194,8 @@ namespace API2.Controllers
                 }
 
                 // 3. Actualizar todos los campos 
-                notaExistente.Calificacion= c.Calificacion;
-                
+                notaExistente.Calificacion = c.Calificacion;
+                notaExistente.Fecha = c.Fecha;
 
                 // 4. Guardar cambios con manejo de concurrencia
                 try
@@ -210,7 +221,7 @@ namespace API2.Controllers
                 return StatusCode(500, $"Error interno: {e.Message}");
             }
         }
-        
+
 
 
 

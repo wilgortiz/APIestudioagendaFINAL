@@ -6,13 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 
-/* 
-el modelo DataContext se crea para interactuar con la base de datos.
-El DataContext es una clase que hereda de DbContext 
-y se utiliza para definir la estructura de la base de datos y proporcionar 
-acceso a los datos poder hacer operaciones crud
-sin él, los controladores no podrían funcionar correctamente.
-*/
+
 namespace API2.Models
 {
 	public class DataContext : DbContext

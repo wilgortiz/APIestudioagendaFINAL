@@ -33,23 +33,23 @@ namespace wepApi.Controllers
 
         private readonly IWebHostEnvironment hostEnvironment;
 
-       
+
         public LoginController(DataContext context, IConfiguration config, IWebHostEnvironment env)
         {
             contexto = context;
-            configuracion = config; 
-            hashSalt = configuracion["Salt"] ?? ""; 
-            hostEnvironment = env; 
+            configuracion = config;
+            hashSalt = configuracion["Salt"] ?? "";
+            hostEnvironment = env;
         }
 
 
-    
+
         // POST: Login/Login
         [HttpPost("Login")]
         [AllowAnonymous]
         public IActionResult Login([FromForm] Login loginView)
         {
-          
+
             try
             {
                 string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
@@ -73,7 +73,7 @@ namespace wepApi.Controllers
                       throw new ArgumentNullException(nameof(secretKey));
                     var securityKey = secretKey != null ? new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(secretKey)) : null;
                     var credenciales = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-                
+
                     var claims = new List<Claim> {
             new Claim(ClaimTypes.Name, estudiante.Email), // El email del estudiante se usa como nombre de usuario
             new Claim("Id", estudiante.Id_Estudiante.ToString()) // Se agrega el ID del estudiante como un claim
@@ -87,7 +87,7 @@ namespace wepApi.Controllers
                       signingCredentials: credenciales
                     );
 
-                
+
                     return Ok(new
                     {
                         //aca se devuelve el token JWT como una cadena
@@ -155,7 +155,7 @@ namespace wepApi.Controllers
 
 
 
-    
+
         [HttpPost("Registro")]
         [AllowAnonymous]
         public IActionResult Registro([FromBody] RegistroEstudiantes registro)
